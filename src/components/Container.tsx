@@ -10,16 +10,34 @@ import {
 import {
 	arrayMove,
 	SortableContext,
-	sortableKeyboardCoordinates, verticalListSortingStrategy,
+	sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import {SortableItem} from "./SortableItem";
 import {Search} from "./Search";
 import {Categories} from "./Categories";
 import {SideWidget} from "./SideWidget";
+import {CSS} from "@dnd-kit/utilities";
 
 export const Container = (props: any) => {
+	const {
+		attributes,
+		listeners,
+		setNodeRef,
+		transform,
+		transition,
+	} = useSortable({id: props.id});
+
+	const style = {
+		transform: CSS.Transform.toString(transform && { ...transform, scaleY: 1 }),
+		transition,
+	};
+
+	const buttonStyle = {
+		top: 0,
+	}
+
 	return (
-		<div className="col-lg-8">
+		<div className="col-lg-8 draggable-element" ref={setNodeRef} style={style} {...props}>
 			<div className="card mb-4">
 				<a href="#!"><img className="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
 				<div className="card-body">
@@ -83,6 +101,7 @@ export const Container = (props: any) => {
 					<li className="page-item"><a className="page-link" href="#!">Older</a></li>
 				</ul>
 			</nav>
+			<button className="drag-button" style={buttonStyle} {...attributes} {...listeners}>drag me</button>
 		</div>
 	);
 }

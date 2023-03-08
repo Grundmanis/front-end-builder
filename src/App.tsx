@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {ToolsPanel} from "./components/ToolsPanel";
 import {WorkPanel} from "./components/WorkPanel";
+import "./App.css";
 
 function App() {
 	return (

@@ -16,9 +16,14 @@ export function SortableItem(props: any) {
 		transition,
 	};
 
+	const buttonStyle = {
+		top: 0,
+	}
+
 	return (
-		<div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+		<div className="draggable-element" ref={setNodeRef} style={style}>
 			{props.children}
+			<button className="drag-button" style={buttonStyle} {...attributes} {...listeners}>drag me</button>
 		</div>
 	);
 }

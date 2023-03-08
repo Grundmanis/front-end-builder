@@ -10,7 +10,7 @@ import {
 import {
 	arrayMove,
 	SortableContext,
-	sortableKeyboardCoordinates, verticalListSortingStrategy,
+	sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
 import {SortableItem} from "./SortableItem";
 import {Search} from "./Search";
@@ -20,8 +20,22 @@ import {SideWidget} from "./SideWidget";import {
 	restrictToVerticalAxis,
 	restrictToWindowEdges,
 } from '@dnd-kit/modifiers';
+import {CSS} from "@dnd-kit/utilities";
 
 export const Sidebar = (props: any) => {
+	const {
+		attributes,
+		listeners,
+		setNodeRef,
+		transform,
+		transition,
+	} = useSortable({id: props.id});
+
+	const style = {
+		transform: CSS.Transform.toString(transform && { ...transform, scaleY: 1 }),
+		transition,
+	};
+
 
 	const [items, setItems] = useState([0, 1, 2, 3]);
 	const itemComponents = [
@@ -50,9 +64,13 @@ export const Sidebar = (props: any) => {
 		}
 	}
 
+	const buttonStyle = {
+		top: 0,
+	}
+
 	return (
 
-		<div className="col-lg-4">
+		<div className="col-lg-4 draggable-element" ref={setNodeRef} style={style} {...props}>
 			<DndContext
 				sensors={sensors}
 				collisionDetection={closestCenter}
@@ -67,6 +85,7 @@ export const Sidebar = (props: any) => {
 						<SortableItem key={id} id={id}>{itemComponents[id]}</SortableItem>)}
 				</SortableContext>
 			</DndContext>
+			<button className="drag-button" style={buttonStyle} {...attributes} {...listeners}>drag me</button>
 		</div>
 	);
 }
