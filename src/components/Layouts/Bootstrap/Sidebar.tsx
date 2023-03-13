@@ -12,7 +12,7 @@ import {
 	SortableContext,
 	sortableKeyboardCoordinates, useSortable, verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import {SortableItem} from "./SortableItem";
+import {SortableItem} from "../../SortableItem";
 import {Search} from "./Search";
 import {Categories} from "./Categories";
 import {SideWidget} from "./SideWidget";import {
