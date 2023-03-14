@@ -16,6 +16,7 @@ export const Row = (props: IElementProps) => {
 	} = useSortable({id: props.index});
 
 	const style = {
+		height: "100px",
 		transform: CSS.Transform.toString(transform && { ...transform, scaleY: 1 }),
 		transition,
 	};
@@ -38,7 +39,9 @@ export const Row = (props: IElementProps) => {
 
 	return (
 		<div className="row tb-modifiable" ref={setNodeRef} style={style}>
-			{components}
+			{components.map((component, index) =>
+				<React.Fragment key={index}>{component}</React.Fragment>
+			)}
 			<Toolbar dragging={{attributes, listeners}} onDuplicate={duplicateInParent} onDelete={deleteInParent} />
 		</div>
 	);
