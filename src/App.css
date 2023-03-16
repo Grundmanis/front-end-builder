@@ -1,6 +1,7 @@
 .draggable-element {
   position: relative;
 }
+
 .drag-button {
   position: absolute;
   top: 0;
@@ -8,6 +9,7 @@
   background-color: aquamarine;
   display: none;
 }
+
 .draggable-element:hover .drag-button {
   display: block;
 }
@@ -15,14 +17,16 @@
 .tb-modifiable:hover {
   border: 1px solid blue;
   position: relative;
+  margin-top:30px;
 }
 
 .tb-toolbar {
   display: none;
   position: absolute;
-  top: 0;
+  top: -30px;
   left: 0;
 }
+
 .tb-modifiable:hover .tb-toolbar {
   display: block;
 }

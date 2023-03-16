@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import {ConfigImages} from "./Sections/ConfigImages";
-import {Colors} from "./Sections/Colors";
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import {Settings} from "./Settings/Settings";

@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {configureStore, createSlice, PayloadAction} from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 
 interface Image {
@@ -16,6 +16,7 @@ export interface ConfigState {
     toneColor: string;
   },
   images: Image[],
+  targetComponent: Record<string, string>,
 }
 
 const initialState: ConfigState = {
@@ -28,6 +29,7 @@ const initialState: ConfigState = {
     toneColor: "000",
   },
   images: [],
+  targetComponent: {},
 };
 
 export const configSlice = createSlice({
@@ -44,15 +46,29 @@ export const configSlice = createSlice({
     removeImage: (state, action: PayloadAction<number>) => {
       state.images.splice(action.payload,1);
     },
+    setTargetComponent: (state, action: PayloadAction<any>) => {
+      state.targetComponent = action.payload;
+    },
+    updateTargetComponent: (state, action: PayloadAction<{ key: string, value: string }>) => {
+      state.targetComponent[action.payload.key] = action.payload.value;
+    },
   },
 });
 
-export const { setColor, addImage, removeImage } = configSlice.actions;
+export const { setColor, addImage, removeImage, setTargetComponent, updateTargetComponent } = configSlice.actions;
+
+const store = configureStore({
+  reducer: configSlice.reducer
+})
+
+// Can still subscribe to the store
+store.subscribe(() => console.log(store.getState()))
 
 // The function below is called a selector and allows us to select a value from
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const getColor = (state: RootState) => state.config.colors;
 export const getImages = (state: RootState) => state.config.images;
+export const getTargetComponent = (state: RootState) => state.config.targetComponent;
 
 export default configSlice.reducer;
