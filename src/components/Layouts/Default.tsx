@@ -1,11 +1,12 @@
 import React, {useState, cloneElement, useRef} from 'react';
-import {Row} from "../LayoutParts/Row";
+import {LayoutElement} from "../LayoutParts/LayoutElement";
+import {Row} from "../LayoutPartsHtml/Row";
 
 export const Default = (props: any) => {
 
 	let index = 1;
 	const [components, setComponents] = useState([
-		<Row index={index} onDuplicate={duplicate} onDelete={deleteComponent}/>,
+		<LayoutElement component={<Row />} index={index} onDuplicate={duplicate} onDelete={deleteComponent}/>,
 	]);
 
 	function duplicate(element: JSX.Element): void {

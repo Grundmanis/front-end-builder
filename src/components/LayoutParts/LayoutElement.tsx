@@ -5,11 +5,15 @@ import {Text} from "./Text";
 import {useAppDispatch} from "../../app/hooks";
 import {setTargetComponent} from "../../features/config/configSlice";
 import {store} from "../../app/store";
+import {Row} from "../LayoutPartsHtml/Row";
 
-export const Row = (props: IElementProps) => {
+export const LayoutElement = (props: IElementProps) => {
 
 	const dispatch = useAppDispatch();
-	// const wrapperRef = useRef(null);
+
+	console.log("props", props.component);
+
+	const PassedComponent = props.component;
 
 	let index = 1;
 	const [components, setComponents] = useState([
@@ -22,22 +26,6 @@ export const Row = (props: IElementProps) => {
 	})
 	const [activeStyle, setActiveStyle] = useState({})
 	const [ref, setRef] = useState({})
-
-	// useEffect(() => {
-	// 	function handleClickOutside(event: any) {
-	// 		// @ts-ignore
-	// 		if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-	// 			console.log("click outside");
-	// 			deActivate();
-	// 		}
-	// 	}
-	// 	// Bind the event listener
-	// 	document.addEventListener("mousedown", handleClickOutside);
-	// 	return () => {
-	// 		// Unbind the event listener on clean up
-	// 		document.removeEventListener("mousedown", handleClickOutside);
-	// 	};
-	// });
 
 	function duplicate(element: JSX.Element): void {
 		index++;
@@ -57,7 +45,7 @@ export const Row = (props: IElementProps) => {
 
 	function duplicateInParent() {
 		deActivate();
-		props.onDuplicate(<Row {...props} />)
+		props.onDuplicate(<LayoutElement {...props} />)
 	}
 
 	function deleteInParent() {
@@ -99,12 +87,11 @@ export const Row = (props: IElementProps) => {
 	}
 
 	return (
-		// <div ref={wrapperRef} onClick={onClick} className="row tb-modifiable" style={{...settings, ...activeStyle}}>
-		<div onClick={onClick} className="row tb-modifiable" style={{...settings, ...activeStyle}}>
+		<Row onClick={onClick} style={{...settings, ...activeStyle}}>
 			{components.map((component, index) =>
 				<React.Fragment key={index}>{component}</React.Fragment>
 			)}
 			<Toolbar onDuplicate={duplicateInParent} onDelete={deleteInParent} />
-		</div>
+		</Row>
 	);
 }
