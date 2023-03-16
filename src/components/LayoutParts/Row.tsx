@@ -13,7 +13,7 @@ export const Row = (props: IElementProps) => {
 
 	let index = 1;
 	const [components, setComponents] = useState([
-		<Text text={"hi" + props.index} index={index} onDuplicate={duplicate} onDelete={deleteComponent}/>,
+		// <Text text={"hi" + props.index} index={index} onDuplicate={duplicate} onDelete={deleteComponent}/>,
 	]);
 
 	const [isActive, setIsActive] = useState(false)
@@ -38,22 +38,22 @@ export const Row = (props: IElementProps) => {
 	// 		document.removeEventListener("mousedown", handleClickOutside);
 	// 	};
 	// });
-
-	function duplicate(element: JSX.Element): void {
-		index++;
-		const clonedElement = cloneElement(element, {
-			index
-		});
-		setComponents((prevComponents) => {
-			return [...prevComponents, ...[clonedElement]]
-		})
-	}
-
-	function deleteComponent(index: number): void {
-		setComponents((current: JSX.Element[]) => {
-			return current.filter((component) => component.props.index !== index)
-		});
-	}
+	//
+	// function duplicate(element: JSX.Element): void {
+	// 	index++;
+	// 	const clonedElement = cloneElement(element, {
+	// 		index
+	// 	});
+	// 	setComponents((prevComponents) => {
+	// 		return [...prevComponents, ...[clonedElement]]
+	// 	})
+	// }
+	//
+	// function deleteComponent(index: number): void {
+	// 	setComponents((current: JSX.Element[]) => {
+	// 		return current.filter((component) => component.props.index !== index)
+	// 	});
+	// }
 
 	function duplicateInParent() {
 		deActivate();

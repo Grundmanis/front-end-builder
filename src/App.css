@@ -17,16 +17,16 @@
 .tb-modifiable:hover {
   border: 1px solid blue;
   position: relative;
-  margin-top:30px;
+  /*margin-top:30px;*/
 }
 
 .tb-toolbar {
   display: none;
-  position: absolute;
-  top: -30px;
-  left: 0;
+  /*position: absolute;*/
+  /*top: 0;*/
+  /*left: 0;*/
 }
 
-.tb-modifiable:hover .tb-toolbar {
-  display: block;
-}
+/*.tb-modifiable:hover + .tb-toolbar {*/
+/*  display: block;*/
+/*}*/

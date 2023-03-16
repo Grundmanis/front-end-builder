@@ -1,12 +1,9 @@
 import React, {useState} from 'react';
-import {Default} from "./Layouts/Default";
-import { renderToString } from 'react-dom/server';
+import {ClassDefault} from "./Layouts/ClassDefault";
 
 export const WorkPanel = (props: any) => {
 
-	const template = <Default />;
-	// const html = renderToString(template);
-	// console.log({html});
+	const template = <ClassDefault />;
 
 	return (
 

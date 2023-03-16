@@ -17,6 +17,7 @@ export interface ConfigState {
   },
   images: Image[],
   targetComponent: Record<string, string>,
+  activeElementId: string,
 }
 
 const initialState: ConfigState = {
@@ -30,6 +31,7 @@ const initialState: ConfigState = {
   },
   images: [],
   targetComponent: {},
+  activeElementId: "",
 };
 
 export const configSlice = createSlice({
@@ -49,13 +51,16 @@ export const configSlice = createSlice({
     setTargetComponent: (state, action: PayloadAction<any>) => {
       state.targetComponent = action.payload;
     },
+    setActiveElementId: (state, action: PayloadAction<string>) => {
+      state.activeElementId = action.payload;
+    },
     updateTargetComponent: (state, action: PayloadAction<{ key: string, value: string }>) => {
       state.targetComponent[action.payload.key] = action.payload.value;
     },
   },
 });
 
-export const { setColor, addImage, removeImage, setTargetComponent, updateTargetComponent } = configSlice.actions;
+export const { setColor, addImage, removeImage, setTargetComponent, updateTargetComponent, setActiveElementId } = configSlice.actions;
 
 const store = configureStore({
   reducer: configSlice.reducer
@@ -70,5 +75,6 @@ store.subscribe(() => console.log(store.getState()))
 export const getColor = (state: RootState) => state.config.colors;
 export const getImages = (state: RootState) => state.config.images;
 export const getTargetComponent = (state: RootState) => state.config.targetComponent;
+export const getActiveElementId = (state: RootState) => state.config.activeElementId;
 
 export default configSlice.reducer;
