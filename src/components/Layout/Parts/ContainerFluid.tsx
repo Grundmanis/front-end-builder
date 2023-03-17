@@ -1,7 +1,7 @@
 import {ReactNode} from "react";
 import {useStyles} from "../../../hooks/useStyles";
 
-export const Link = (props: {
+export const ContainerFluid = (props: {
 	children: ReactNode,
 	onClick: (e: unknown, styles: object) => void,
 	className: string,
@@ -9,19 +9,14 @@ export const Link = (props: {
 }) => {
 
 	const styles = useStyles({
-		border: "1px solid green",
+		border: "1px solid blue",
 		color: "red",
 		backgroundColor: "#f9f9f9"
 	}, props.styles)
 
 	return (
-		<a
-			style={styles}
-			className={props.className}
-			onClick={(e) => props.onClick(e, styles)}
-			href="#"
-		>
+		<div className={"container-fluid " + props.className} onClick={(e) => props.onClick(e, styles)} style={styles}>
 			{props.children}
-		</a>
+		</div>
 	);
-}
+};

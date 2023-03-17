@@ -5,15 +5,20 @@ import { store } from './app/store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import './index.css';
+import {WorkPanel} from "./components/WorkPanel";
+// import {renderToString} from "react-dom/server";
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
+const template = <Provider store={store}>
+    {<App/>}
+</Provider>;
+// const html = renderToString(template);
+// console.log(html);
 
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+      {template}
   </React.StrictMode>
 );
 

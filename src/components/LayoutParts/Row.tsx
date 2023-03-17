@@ -1,7 +1,6 @@
 import React, {cloneElement, useEffect, useRef, useState} from 'react';
 import {Toolbar} from "../Toolbar";
 import {IElementProps} from "../../interface/IElementProps";
-import {Text} from "./Text";
 import {useAppDispatch} from "../../app/hooks";
 import {setTargetComponent} from "../../features/config/configSlice";
 import {store} from "../../app/store";

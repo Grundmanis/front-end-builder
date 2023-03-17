@@ -14,6 +14,11 @@ export const Settings = () =>{
         }));
     }
 
+    function exportHtml() {
+        const work = document.getElementById("work");
+        console.log("html", work?.innerHTML);
+    }
+
     const rows = [];
     for (const option in targetComponent) {
         rows.push(<div key={option} className="border">
@@ -27,6 +32,9 @@ export const Settings = () =>{
     }
 
     return (
-        <React.Fragment>{rows}</React.Fragment>
+        <React.Fragment>
+            <button onClick={exportHtml}>export</button>
+            {rows}
+        </React.Fragment>
     )
 }

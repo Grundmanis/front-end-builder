@@ -13,7 +13,6 @@ export const TemplateElement = (props: { component: React.ElementType, children?
 	const [styles, setStyles] = useState({});
 	const [subscribeRef, setSubscribeRef] = useState({})
 	const [uniqueId] = useState(useId())
-	const ref = useRef(null)
 
 	function onClick(e: SyntheticEvent, styles: object) {
 
@@ -45,19 +44,14 @@ export const TemplateElement = (props: { component: React.ElementType, children?
 
 		const config = store.getState().config;
 		if (config.activeElementId === uniqueId) {
-			console.log("passing styles to ", uniqueId)
-			// pass styles to child
 			setStyles(config.targetComponent);
 		} else {
-			console.log("uniqueId is deactivated", uniqueId)
-			// TODO: do we really need isActive???
 			setIsActive(false);
 		}
 	}
 
 	return (
 		<DynamicComp
-			ref={ref}
 			className="tb-modifiable"
 			onClick={onClick}
 			styles={styles}
